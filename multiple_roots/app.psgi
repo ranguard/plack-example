@@ -10,10 +10,14 @@ use Plack::Builder;
 use Plack::Middleware::ErrorDocument;
 use Plack::Middleware::Static;
 
+my $root = $ENV{'PLACK_ENV'} eq 'deployment' ? '/home/dotcloud/current/' : './';
+
 # my $base   = dir( file($0)->dir(), 'base' )->stringify();
 # my $custom = dir( file($0)->dir(), 'custom' )->stringify();
-my $base   = dir( 'base' )->stringify();
-my $custom = dir( 'custom' )->stringify();
+my $base   = dir( $root, 'base' )->stringify();
+my $custom = dir( $root, 'custom' )->stringify();
+
+warn $base;
 
 # Create our TT app, specifying the root and file extensions
 my $app = Plack::App::TemplateToolkit->new(
