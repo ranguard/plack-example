@@ -13,8 +13,6 @@ use Plack::Middleware::Static;
 my $base   = dir( 'base' )->stringify();
 my $custom = dir( 'custom' )->stringify();
 
-warn $base;
-
 # Create our TT app, specifying the root and file extensions
 my $app = Plack::App::TemplateToolkit->new(
     root => [ ( $custom, $base ) ],    # required
