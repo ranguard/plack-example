@@ -5,7 +5,7 @@ use warnings;
 use lib qw(lib);
 
 use Path::Class;
-use Plack::App::TemplateToolkit;
+use Plack::Middleware::TemplateToolkit;
 use Plack::Builder;
 use Plack::Middleware::ErrorDocument;
 use Plack::Middleware::Static;
@@ -14,7 +14,7 @@ my $base   = dir( 'base' )->stringify();
 my $custom = dir( 'custom' )->stringify();
 
 # Create our TT app, specifying the root and file extensions
-my $app = Plack::App::TemplateToolkit->new(
+my $app = Plack::Middleware::TemplateToolkit->new(
     root => [ ( $custom, $base ) ],    # required
     # extension => '.html',          # optional
 )->to_app;
@@ -40,5 +40,6 @@ $app = Plack::Middleware::Static->wrap(
 
 
 return builder {
+	enable "Debug";
     $app;
 }
