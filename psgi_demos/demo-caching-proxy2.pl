@@ -4,7 +4,7 @@ use Plack::Builder;
 use Plack::App::Proxy;
 use Plack::Middleware::Cache;
 
-use LWP::UserAgent;
+use LWP::Simple;
 use LWP::Protocol::PSGI;
 
 my $app
@@ -20,6 +20,5 @@ $app = builder {
 # Hijack Any LWP::Useragent requests
 LWP::Protocol::PSGI->register($app);
 
-my $ua  = LWP::UserAgent->new;
-my $res = $ua->get("http://london.pm.org/");
-say '\o/' if $res->content =~ /London Perl Mongers/;
+my $res = get("http://london.pm.org/");
+say '\o/' if $res =~ /London Perl Mongers/;
