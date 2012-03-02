@@ -1,0 +1,12 @@
+<body>
+<h2>Template 2: [% page.title %]</h2>
+
+<p>
+[% content %]
+</p>
+
+<h2>End template 2</h2>
+
+[% PROCESS head_js %]
+
+</body>

@@ -1,0 +1,15 @@
+<!doctype html> 
+<html lang="en" class="no-js"> 
+[% 
+    # Get the content of the page
+    content = PROCESS $template;
+    
+    # Now choose and process the wrapper
+    IF page.wrapper;
+        wrapper = "wrappers/" _ page.wrapper _ '.tt';
+        PROCESS $wrapper;
+    ELSE;
+       content;
+    END;
+%]
+</html>
